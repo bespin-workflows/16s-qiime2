@@ -1,11 +1,11 @@
 rooted_tree:
   class: File
-  location: ""
+  location: "rooted-tree.qza"
 table:
   class: File
-  location: ""
+  location: "table.qza"
 sample_metadata:
   class: File
-  location: "https://data.qiime2.org/2018.4/tutorials/atacama-soils/sample_metadata.tsv"
+  location: "sample_metadata.tsv"
 diversity_sampling_depth: 500
 unweighted_unifrac_metadata_column: Subject
