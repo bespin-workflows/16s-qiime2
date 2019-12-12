@@ -1,0 +1,13 @@
+forward_sequences:
+    class: File
+    location: "https://data.qiime2.org/2018.4/tutorials/atacama-soils/1p/forward.fastq.gz"
+reverse_sequences:
+    class: File
+    location: "https://data.qiime2.org/2018.4/tutorials/atacama-soils/1p/reverse.fastq.gz"
+barcodes:
+    class: File
+    location: "https://data.qiime2.org/2018.4/tutorials/atacama-soils/1p/barcodes.fastq.gz"
+sample_metadata:
+    class: File
+    location: "https://data.qiime2.org/2018.4/tutorials/atacama-soils/sample_metadata.tsv"
+metadata_barcodes_column: BarcodeSequence

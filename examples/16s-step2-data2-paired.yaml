@@ -1,0 +1,16 @@
+demux_sequences_artifact:
+  class: File
+  location: "demux.qza"
+dada2_denoise_n_threads: 8
+dada2_trunc_len_f: 120
+dada2_trunc_len_r: 120
+dada2_trim_left_f: 0
+dada2_trim_left_r: 0
+filter_feature_table_where": "SiteName='Baquedano'"
+sample_metadata:
+  class: File
+  location: "https://data.qiime2.org/2018.4/tutorials/atacama-soils/sample_metadata.tsv"
+taxonomic_classifier:
+  class: File
+  location: "https://data.qiime2.org/2018.4/common/gg-13-8-99-515-806-nb-classifier.qza"
+metadata_barcodes_column: BarcodeSequence
