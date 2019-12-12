@@ -1,10 +1,8 @@
 # QIIME2 mulit-part workflows
 
-- __Step1__: Import Demux: `workflows/qiime2-step1-import-demux.cwl`
-- __Step2-v1__: DADA2 Option: `workflows/qiime2-step2-dada2.cwl`
-- __Step2-v2__: Deblur Option: `workflows/qiime2-step2-deblur.cwl`
-- __Step3__: Alpha analysis: `workflows/qiime2-step3-alpha-analysis.cwl`
-
+- __Step1__: Import Demux: `16s-step1-import-demux-paired.cwl`
+- __Step2__: DADA2: `16s-step2-dada2-paired.cwl`
+- __Step3__: Alpha analysis: `16s-step3-alpha-beta-analysis`
 
 # Relation to QIIME2 Moving Pictures Tutorial
 
@@ -12,20 +10,10 @@
  - [Obtaining and importing data](https://docs.qiime2.org/2018.4/tutorials/moving-pictures/#obtaining-and-importing-data)
  - [Demultiplexing sequences](https://docs.qiime2.org/2018.4/tutorials/moving-pictures/#demultiplexing-sequences)
 
-### Step2-v1
-Before running this step a user must determine `dada2_trim_left` and `dada2_trunc_len` parameters.
+### Step2
+Before running this step a user must determine `dada2_trunc_len_f`, `dada2_trunc_len_r` and `dada2_trim_left_f`, `dada2_trim_left_r` parameters.
 This can be done based on plots you see in `demux.qzv` created in __Step1__.
-
-- [Option 1: DADA2](https://docs.qiime2.org/2018.4/tutorials/moving-pictures/#option-1-dada2)
-- [FeatureTable and FeatureData summaries](https://docs.qiime2.org/2018.4/tutorials/moving-pictures/#featuretable-and-featuredata-summaries)
-- [Generate a tree for phylogenetic diversity analyses](https://docs.qiime2.org/2018.4/tutorials/moving-pictures/#generate-a-tree-for-phylogenetic-diversity-analyses)
-- [Taxonomic analysis](https://docs.qiime2.org/2018.4/tutorials/moving-pictures/#taxonomic-analysis)
-- [Differential abundance testing with ANCOM](https://docs.qiime2.org/2018.4/tutorials/moving-pictures/#differential-abundance-testing-with-ancom)
-
-### Step2-v2
-Before running this step a user must determine `deblur_trim_length` parameters.
-This can be done based on plots you see in `demux.qzv` created in __Step1__.
-- [Option 2: Deblur](https://docs.qiime2.org/2018.4/tutorials/moving-pictures/#option-2-deblur)
+- [DADA2](https://docs.qiime2.org/2018.4/tutorials/moving-pictures/#option-1-dada2)
 - [FeatureTable and FeatureData summaries](https://docs.qiime2.org/2018.4/tutorials/moving-pictures/#featuretable-and-featuredata-summaries)
 - [Generate a tree for phylogenetic diversity analyses](https://docs.qiime2.org/2018.4/tutorials/moving-pictures/#generate-a-tree-for-phylogenetic-diversity-analyses)
 - [Taxonomic analysis](https://docs.qiime2.org/2018.4/tutorials/moving-pictures/#taxonomic-analysis)
