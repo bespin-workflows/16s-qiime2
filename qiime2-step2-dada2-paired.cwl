@@ -68,7 +68,7 @@ outputs:
 
 steps:
   dada2_sequences:
-    run: ../subworkflows/qiime2-03-dada2-paired.cwl
+    run: subworkflows/qiime2-03-dada2-paired.cwl
     in:
       demux_sequences_artifact: demux_sequences_artifact
       trunc_len_f: dada2_trunc_len_f
@@ -82,7 +82,7 @@ steps:
       - dada2_denoising_stats
       - dada2_visualization_artifact
   feature_table_visualizations:
-    run: ../subworkflows/qiime2-04-features.cwl
+    run: subworkflows/qiime2-04-features.cwl
     in:
       feature_table_artifact: dada2_sequences/dada2_table
       rep_seqs_artifact: dada2_sequences/dada2_representative_sequences
@@ -93,7 +93,7 @@ steps:
       - feature_table_summarize_visualization
       - feature_table_tabulation_visualization
   phylogenetic_tree:
-    run: ../subworkflows/qiime2-05-phylogeny.cwl
+    run: subworkflows/qiime2-05-phylogeny.cwl
     in:
       representative_sequences: dada2_sequences/dada2_representative_sequences
     out:
@@ -102,7 +102,7 @@ steps:
       - unrooted_tree
       - rooted_tree
   taxonomic_analysis:
-    run: ../subworkflows/qiime2-08-taxonomic-analysis.cwl
+    run: subworkflows/qiime2-08-taxonomic-analysis.cwl
     in:
       rep_seqs: dada2_sequences/dada2_representative_sequences
       table: dada2_sequences/dada2_table

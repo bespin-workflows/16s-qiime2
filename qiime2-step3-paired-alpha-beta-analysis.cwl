@@ -34,7 +34,7 @@ outputs:
 
 steps:
   alpha_beta_diversity:
-    run: ../subworkflows/qiime2-paired-alpha-beta-diversity.cwl
+    run: subworkflows/qiime2-paired-alpha-beta-diversity.cwl
     in:
       rooted_tree: rooted_tree
       table: table

@@ -38,7 +38,7 @@ outputs:
 
 steps:
   import_data:
-    run: ../subworkflows/qiime2-01-import-data-paired.cwl
+    run: subworkflows/qiime2-01-import-data-paired.cwl
     in:
       forward_sequences: forward_sequences
       reverse_sequences: reverse_sequences
@@ -46,7 +46,7 @@ steps:
     out:
       - sequences_artifact
   demux:
-    run: ../subworkflows/qiime2-02-demux-emp-paired.cwl
+    run: subworkflows/qiime2-02-demux-emp-paired.cwl
     in:
       sequences_artifact: import_data/sequences_artifact
       sample_metadata: sample_metadata
