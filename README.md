@@ -23,7 +23,7 @@ This can be done based on plots you see in `demux.qzv` created in __Step1__.
 
 ### Step3
 Before running this step a user must determine `diversity_sampling_depth` and `rarefaction_max_depth` parameters.
-`diversity_sampling_depth` can be determined by looking at `table.qzv` from __Step2___.
+`diversity_sampling_depth` can be determined by looking at `table.qzv` from __Step2__.
 `rarefaction_max_depth` can be determined by looking at `table.qzv` (Frequency per sample).
 
 - [Alpha and beta diversity analysis](https://docs.qiime2.org/2018.4/tutorials/moving-pictures/#alpha-and-beta-diversity-analysis)
