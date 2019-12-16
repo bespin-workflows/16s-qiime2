@@ -4,6 +4,10 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: SubworkflowFeatureRequirement
+- class: StepInputExpressionRequirement
+- class: InlineJavascriptRequirement
+- class: MultipleInputFeatureRequirement
+
 label: QIIME2 Step 2 (DADA2 option)
 doc: |
   QIIME2 DADA2, feature summaries, phylogenetic diversity tree, taxonomic analysis and ancom
@@ -18,6 +22,51 @@ inputs:
   sample_metadata: File
   taxonomic_classifier: File
   filter_feature_table_where: string
+  dada2_representative_sequences_filename:
+    type: string
+    default: rep-seqs.qza
+  dada2_table_filename:
+    type: string
+    default: table.qza
+  dada2_denoising_stats_filename:
+    type: string
+    default: stats.qza
+  dada2_stats_filename:
+    type: string
+    default: stats.qzv
+  filtered_table_filename_filename:
+    type: string
+    default: filtered-table.qza
+  feature_table_summary_filename:
+    type: string
+    default: table.qzv
+  feature_table_tabulation_filename:
+    type: string
+    default: rep-seqs.qzv
+  aligned_rep_seqs_filename:
+    type: string
+    default: aligned-rep-seqs.qza
+  masked_aligned_rep_seqs_filename:
+    type: string
+    default: masked-aligned-rep-seqs.qza
+  unrooted_tree_filename:
+    type: string
+    default: unrooted-tree.qza
+  rooted_tree_filename:
+    type: string
+    default: rooted-tree.qza
+  taxonomy_filename:
+    type: string
+    default: taxonomy.qza
+  taxonomy_visualization_filename:
+    type: string
+    default: taxonomy.qzv
+  taxa_bar_plots_filename:
+    type: string
+    default: taxa-bar-plots.qzv
+  output_filename_prefix:
+    type: string
+    default: ''
 
 outputs:
    dada2_representative_sequences:
@@ -76,6 +125,26 @@ steps:
       trim_left_f: dada2_trim_left_f
       trim_left_r: dada2_trim_left_r
       n_threads: dada2_denoise_n_threads
+      dada2_representative_sequences_filename:
+        source:
+          - output_filename_prefix
+          - dada2_representative_sequences_filename
+        valueFrom: ${ return self[0] + self[1]; }
+      dada2_table_filename:
+        source:
+          - output_filename_prefix
+          - dada2_table_filename
+        valueFrom: ${ return self[0] + self[1]; }
+      dada2_denoising_stats_filename:
+        source:
+          - output_filename_prefix
+          - dada2_denoising_stats_filename
+        valueFrom: ${ return self[0] + self[1]; }
+      dada2_stats_filename:
+        source:
+          - output_filename_prefix
+          - dada2_stats_filename
+        valueFrom: ${ return self[0] + self[1]; }
     out:
       - dada2_representative_sequences
       - dada2_table
@@ -88,6 +157,21 @@ steps:
       rep_seqs_artifact: dada2_sequences/dada2_representative_sequences
       sample_metadata: sample_metadata
       filter_feature_table_where: filter_feature_table_where
+      filtered_table_filename_filename:
+        source:
+          - output_filename_prefix
+          - filtered_table_filename_filename
+        valueFrom: ${ return self[0] + self[1]; }
+      feature_table_summary_filename:
+        source:
+          - output_filename_prefix
+          - feature_table_summary_filename
+        valueFrom: ${ return self[0] + self[1]; }
+      feature_table_tabulation_filename:
+        source:
+          - output_filename_prefix
+          - feature_table_tabulation_filename
+        valueFrom: ${ return self[0] + self[1]; }
     out:
       - filtered_feature_table_artifact
       - feature_table_summarize_visualization
@@ -96,6 +180,26 @@ steps:
     run: subworkflows/qiime2-05-phylogeny.cwl
     in:
       representative_sequences: dada2_sequences/dada2_representative_sequences
+      aligned_rep_seqs_filename:
+        source:
+          - output_filename_prefix
+          - aligned_rep_seqs_filename
+        valueFrom: ${ return self[0] + self[1]; }
+      masked_aligned_rep_seqs_filename:
+        source:
+          - output_filename_prefix
+          - masked_aligned_rep_seqs_filename
+        valueFrom: ${ return self[0] + self[1]; }
+      unrooted_tree_filename:
+        source:
+          - output_filename_prefix
+          - unrooted_tree_filename
+        valueFrom: ${ return self[0] + self[1]; }
+      rooted_tree_filename:
+        source:
+          - output_filename_prefix
+          - rooted_tree_filename
+        valueFrom: ${ return self[0] + self[1]; }
     out:
       - aligned_representative_sequences
       - masked_representative_sequences
@@ -108,6 +212,21 @@ steps:
       table: dada2_sequences/dada2_table
       classifier: taxonomic_classifier
       sample_metadata: sample_metadata
+      taxonomy_filename:
+        source:
+          - output_filename_prefix
+          - taxonomy_filename
+        valueFrom: ${ return self[0] + self[1]; }
+      taxonomy_visualization_filename:
+        source:
+          - output_filename_prefix
+          - taxonomy_visualization_filename
+        valueFrom: ${ return self[0] + self[1]; }
+      taxa_bar_plots_filename:
+        source:
+          - output_filename_prefix
+          - taxa_bar_plots_filename
+        valueFrom: ${ return self[0] + self[1]; }
     out:
       - taxonomy_artifact
       - taxonomy_visualization_file
