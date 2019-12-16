@@ -4,6 +4,9 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: SubworkflowFeatureRequirement
+- class: StepInputExpressionRequirement
+- class: InlineJavascriptRequirement
+- class: MultipleInputFeatureRequirement
 label: QIIME2 Step 1 paired end sequences
 doc: |
   QIIME2 Import and Demux Step 1 paired end sequences
