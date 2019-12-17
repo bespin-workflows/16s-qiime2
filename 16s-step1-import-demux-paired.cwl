@@ -4,6 +4,9 @@ cwlVersion: v1.0
 class: Workflow
 requirements:
 - class: SubworkflowFeatureRequirement
+- class: StepInputExpressionRequirement
+- class: InlineJavascriptRequirement
+- class: MultipleInputFeatureRequirement
 label: QIIME2 Step 1 paired end sequences
 doc: |
   QIIME2 Import and Demux Step 1 paired end sequences
@@ -24,7 +27,18 @@ inputs:
   metadata_barcodes_column: 
     type: string
     doc: name of the column in sample_metadata that contains barcodes
-
+  sequences_artifact_filename:
+    type: string
+    default: emp-paired-end-sequences.qza
+  demux_sequences_filename:
+    type: string
+    default: demux.qza
+  demux_visualization_filename:
+    type: string
+    default: demux.qzv
+  output_filename_prefix:
+    type: string
+    default: ''
 outputs:
   sequences_artifact:
     type: File
@@ -42,6 +56,12 @@ steps:
     in:
       forward_sequences: forward_sequences
       reverse_sequences: reverse_sequences
+      sequences_artifact_filename:
+        source:
+          - output_filename_prefix
+          - sequences_artifact_filename
+        valueFrom: ${ return self[0] + self[1]; }
+
       barcodes: barcodes
     out:
       - sequences_artifact
@@ -51,6 +71,16 @@ steps:
       sequences_artifact: import_data/sequences_artifact
       sample_metadata: sample_metadata
       metadata_barcodes_column: metadata_barcodes_column
+      demux_sequences_filename:
+        source:
+          - output_filename_prefix
+          - demux_sequences_filename
+        valueFrom: ${ return self[0] + self[1]; }
+      demux_visualization_filename:
+        source:
+          - output_filename_prefix
+          - demux_visualization_filename
+        valueFrom: ${ return self[0] + self[1]; }
     out:
       - demux_sequences_artifact
       - demux_visualization_artifact
